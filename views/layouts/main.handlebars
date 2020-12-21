@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Отображение элементов</title>
+
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+    .parent {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .child {
+
+    }
+    .hide {
+        display: none;
+    }
+</style>
+</head>
+<body>
+<div class="parent">
+    <div class="child">
+            Числа Фибоначчи — элементы числовой последовательности. <br>0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711...
+        <div>
+            {{{body}}}
+            <form action="/" method="get">
+                <input type="text" name="value" value="{{{value}}}" class="hide">
+                <input type="submit" value=">>>">
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

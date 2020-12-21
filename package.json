@@ -1,0 +1,26 @@
+{
+  "name": "fibonacci",
+  "version": "1.0.0",
+  "description": "node js and c++ app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/me-am-i/fibonacci.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/me-am-i/fibonacci/issues"
+  },
+  "homepage": "https://github.com/me-am-i/fibonacci#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0"
+  }
+}

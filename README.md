@@ -1,0 +1,1 @@
+In this directory run `node-gyp build` and then `npm start` (`yarn start`) or `node ./app.js` 
