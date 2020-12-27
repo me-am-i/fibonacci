@@ -1,11 +1,6 @@
 #include <node.h>
-#include <iostream>
-//#include <stdio.h>
-//#include <stdlib.h>
-#include <sstream>
 #include <string>
 #include <cstdlib>
-//using namespace std;
 
 namespace fibonacci {
 
@@ -34,14 +29,8 @@ void Fib(const FunctionCallbackInfo<Value>& args) {
     }
     else {
         int intStep = atoi(step) + 1;
-        int nextStep = intStep;
         // Update the environment variable
-        char buf[16];
-        int j = 12;
-        sprintf(buf, "%d", j);
-        std::string s = std::to_string(nextStep);
-        char const *pchar = s.c_str();
-        setenv("FIBKEY", pchar, 1);
+        setenv("FIBKEY", std::to_string(intStep).c_str(), 1);
 
         // Perform the operation
         // Get current element and count next one
@@ -54,8 +43,7 @@ void Fib(const FunctionCallbackInfo<Value>& args) {
             prev = temp;
         }
         value = prev;
-
-}
+    }
 
     Local<Number> num = Number::New(isolate, value);
 
@@ -63,10 +51,17 @@ void Fib(const FunctionCallbackInfo<Value>& args) {
     args.GetReturnValue().Set(num);
 }
 
-void Init(Local<Object> exports) {
-    NODE_SET_METHOD(exports, "get", Fib);
+
+void Clear(const FunctionCallbackInfo<Value>& args) {
+    setenv("FIBKEY", "0", 1);
 }
 
-NODE_MODULE(NODE_GYP_MODULE_NAME, Init)
+
+void InitAll(Local<Object> exports) {
+    NODE_SET_METHOD(exports, "get", Fib);
+    NODE_SET_METHOD(exports, "clear", Clear);
+}
+
+NODE_MODULE(NODE_GYP_MODULE_NAME, InitAll)
 
 }
