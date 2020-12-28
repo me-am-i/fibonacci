@@ -1,27 +1,36 @@
 const express = require('express');
+const cors = require('cors');
+
 const app = express();
-const handlebars = require('express-handlebars');
 
 const addon = require('./build/Release/fibonacci');
 
 const host = '127.0.0.1';
-const port = 3000;
+const port = 3001;
 
-app.engine('handlebars', handlebars({defaultLayout: 'main'}));
-app.set('views', './views');
-app.set('view engine', 'handlebars');
-app.enable('view cache');
+app.use(cors());
 
 app.get("/", (req, res) => {
-    let current;
-    if (!Number(req.query.value)){
-        current = 0;
-    } else current = Number(req.query.value);
-    res.render('home', {
-        number: addon.get(current),
-        value: current + 1
-    });
 
+    let current = 0;
+    if (req.query.clear) {
+        addon.clear();
+        res.json({number: 0,
+            value: current + 1
+        });
+    }
+
+    else {
+        if (!Number(req.query.value)) {
+            current = 0;
+        } else {
+            current = Number(req.query.value);
+        }
+    res.json({
+            number: addon.get(),
+            value: current + 1
+        });
+    }
 });
 
 app.listen(port, host, () => {
